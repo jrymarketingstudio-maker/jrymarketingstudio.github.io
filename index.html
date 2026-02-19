@@ -3,208 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>JRY Marketing Studio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* ===== GLOBAL ===== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#0f0f0f;color:#f1efe9;overflow-x:hidden;}
+html{scroll-behavior:smooth;}
+a{color:inherit;text-decoration:none;}
 
-/* ========= GLOBAL ========= */
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-body{
-background:#0e0e0e;
-color:#f1efe9;
-overflow-x:hidden;
-}
-
-/* Smooth Scroll */
-html{
-scroll-behavior:smooth;
-}
-
-/* Mouse Glow */
+/* ===== MOUSE GLOW ===== */
 .glow{
 position:fixed;
-width:400px;
-height:400px;
+width:400px;height:400px;
 background:radial-gradient(circle,#ffffff22,transparent 60%);
 pointer-events:none;
 transform:translate(-50%,-50%);
 z-index:0;
 }
 
-/* NAVBAR */
-
+/* ===== NAVBAR ===== */
 nav{
-position:fixed;
-width:100%;
-padding:20px 8%;
-display:flex;
-justify-content:space-between;
-background:rgba(14,14,14,.6);
-backdrop-filter:blur(12px);
-z-index:100;
+position:fixed;width:100%;padding:20px 8%;
+display:flex;justify-content:space-between;
+background:rgba(15,15,15,0.6);
+backdrop-filter:blur(12px);z-index:100;
 }
+nav a{margin-left:25px;font-size:14px;transition:.3s;}
+nav a:hover{color:#cfcac2;}
 
-nav a{
-color:white;
-text-decoration:none;
-margin-left:25px;
-font-size:14px;
-}
-
-/* HERO */
-
+/* ===== HERO ===== */
 .hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:linear-gradient(180deg,#161616,#0e0e0e);
+height:100vh;display:flex;flex-direction:column;
+justify-content:center;align-items:center;text-align:center;
+background:linear-gradient(180deg,#161616,#0f0f0f);
+position:relative;overflow:hidden;
 }
-
-.hero h1{
-font-size:64px;
-max-width:900px;
-line-height:1.2;
-animation:fadeUp 1s ease;
+.hero::after{
+content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+background:radial-gradient(circle at center,#ffffff08,#0f0f0f 70%);
+pointer-events:none;
 }
+.hero h1{font-size:64px;max-width:900px;line-height:1.2;margin-bottom:20px;animation:fadeUp 1s ease;}
+.hero p{color:#cfcac2;margin-bottom:30px;animation:fadeUp 1.3s ease;}
+.btn{padding:14px 30px;border-radius:40px;border:none;cursor:pointer;margin:10px;font-weight:600;transition:.3s;}
+.primary{background:#f1efe9;color:black;}
+.primary:hover{transform:translateY(-4px);}
+.secondary{background:transparent;border:1px solid #f1efe9;color:white;}
+.secondary:hover{background:#f1efe9;color:black;}
 
-.hero p{
-margin:25px 0;
-color:#cfcac2;
-animation:fadeUp 1.4s ease;
-}
+/* ===== SECTIONS ===== */
+section{padding:120px 10%;position:relative;z-index:2;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;}
+.card{background:#f1efe9;color:black;padding:40px;border-radius:20px;transform:translateY(60px);opacity:0;transition:.7s;}
+.card.show{opacity:1;transform:translateY(0);}
+.card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(0,0,0,.4);}
 
-.btn{
-padding:14px 30px;
-border-radius:40px;
-border:none;
-cursor:pointer;
-margin:10px;
-font-weight:600;
-transition:.3s;
-}
+/* ===== PROCESS ===== */
+.process{display:flex;flex-direction:column;gap:30px;}
+.step{border-left:2px solid #cfcac2;padding-left:20px;opacity:0;transform:translateX(-30px);transition:.6s;}
+.step.show{opacity:1;transform:translateX(0);}
 
-.primary{
-background:#f1efe9;
-color:black;
-}
+/* ===== CONTACT ===== */
+input,textarea{width:100%;padding:15px;margin:10px 0;background:#1c1c1c;border:none;border-radius:10px;color:white;}
+.submit{background:#f1efe9;color:black;padding:15px;border:none;border-radius:30px;cursor:pointer;transition:.3s;}
+.submit:hover{transform:translateY(-3px);}
 
-.primary:hover{
-transform:translateY(-4px);
-}
+/* ===== FOOTER ===== */
+footer{text-align:center;padding:40px;border-top:1px solid #333;}
+.socials{margin-top:15px;}
+.socials a{margin:0 10px;display:inline-block;transition:.3s;}
+.socials a:hover{opacity:.7;}
+.socials img{width:28px;filter:invert(1);}
 
-.secondary{
-background:transparent;
-border:1px solid #f1efe9;
-color:white;
-}
+/* ===== FLOAT WHATSAPP ===== */
+.whatsapp{position:fixed;bottom:25px;right:25px;background:#25D366;width:60px;height:60px;border-radius:50%;display:flex;justify-content:center;align-items:center;box-shadow:0 10px 25px rgba(0,0,0,.4);z-index:999;}
+.whatsapp img{width:32px;}
 
-/* SECTION */
-
-section{
-padding:120px 10%;
-position:relative;
-z-index:2;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
-}
-
-.card{
-background:#f1efe9;
-color:black;
-padding:40px;
-border-radius:20px;
-transform:translateY(60px);
-opacity:0;
-transition:.7s;
-}
-
-.card.show{
-opacity:1;
-transform:translateY(0);
-}
-
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 20px 50px rgba(0,0,0,.4);
-}
-
-/* CONTACT */
-
-input,textarea{
-width:100%;
-padding:15px;
-margin:10px 0;
-background:#1c1c1c;
-border:none;
-border-radius:10px;
-color:white;
-}
-
-.submit{
-background:#f1efe9;
-color:black;
-padding:15px;
-border:none;
-border-radius:30px;
-cursor:pointer;
-}
-
-/* FLOAT WHATSAPP */
-
-.whatsapp{
-position:fixed;
-bottom:25px;
-right:25px;
-background:#25D366;
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-box-shadow:0 10px 25px rgba(0,0,0,.4);
-z-index:999;
-}
-
-.whatsapp img{
-width:32px;
-}
-
-/* FOOTER */
-
-footer{
-text-align:center;
-padding:40px;
-border-top:1px solid #333;
-}
-
-/* ANIMATION */
-
-@keyframes fadeUp{
-from{opacity:0; transform:translateY(40px);}
-to{opacity:1; transform:translateY(0);}
-}
-
+/* ===== ANIMATION ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
 </style>
-</head>
 
+</head>
 <body>
 
 <div class="glow"></div>
@@ -213,101 +95,77 @@ to{opacity:1; transform:translateY(0);}
 <h3>JRY</h3>
 <div>
 <a href="#services">Services</a>
+<a href="#process">Process</a>
 <a href="#contact">Contact</a>
 </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-
 <h1>Modern Marketing That Drives Real Growth</h1>
-
-<p>We design, build and scale brands with strategy, creativity and performance.</p>
-
+<p>We design, build, and scale brands with strategy, creativity, and performance.</p>
 <button class="btn primary">Start Project</button>
 <button class="btn secondary">View Services</button>
-
 </div>
 
 <!-- SERVICES -->
 <section id="services">
-
 <h2 style="margin-bottom:40px;">Our Services</h2>
-
 <div class="cards">
-
-<div class="card">
-<h3>Website Design</h3>
-<p>High-converting modern websites built for speed and branding.</p>
+<div class="card"><h3>Website Design</h3><p>High-converting modern websites built for speed and branding.</p></div>
+<div class="card"><h3>Digital Marketing</h3><p>Performance campaigns focused on ROI and measurable growth.</p></div>
+<div class="card"><h3>Brand Strategy</h3><p>Create authority positioning that attracts premium clients.</p></div>
 </div>
+</section>
 
-<div class="card">
-<h3>Digital Marketing</h3>
-<p>Performance campaigns focused on ROI and measurable growth.</p>
+<!-- PROCESS -->
+<section id="process">
+<h2 style="margin-bottom:40px;">Our Process</h2>
+<div class="process">
+<div class="step">01 — Strategy Planning</div>
+<div class="step">02 — Design & Development</div>
+<div class="step">03 — Launch</div>
+<div class="step">04 — Growth Optimization</div>
 </div>
-
-<div class="card">
-<h3>Brand Strategy</h3>
-<p>Create authority positioning that attracts premium clients.</p>
-</div>
-
-</div>
-
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-
 <h2>Contact Us</h2>
-
 <form action="https://formspree.io/f/YOUR-ID" method="POST">
-
 <input type="text" name="name" placeholder="Your Name" required>
-
 <input type="email" name="email" placeholder="Email Address" required>
-
 <textarea name="message" placeholder="Tell us about your project"></textarea>
-
 <button class="submit">Send Message</button>
-
 </form>
-
+<div class="socials">
+<a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+<a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
+</div>
 </section>
 
 <footer>
-
 <p>© 2026 JRY Marketing Studio</p>
-
 </footer>
 
 <!-- FLOAT WHATSAPP -->
-<a class="whatsapp" href="#">
-<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-</a>
+<a class="whatsapp" href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
 
 <script>
-
-/* Mouse Glow Effect */
+/* MOUSE GLOW */
 const glow=document.querySelector('.glow');
-
 document.addEventListener('mousemove',e=>{
 glow.style.left=e.clientX+'px';
 glow.style.top=e.clientY+'px';
 });
 
-/* Scroll Animation */
-
+/* SCROLL REVEAL */
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add('show');
-}
+if(entry.isIntersecting){entry.target.classList.add('show');}
 });
 });
-
-document.querySelectorAll('.card')
-.forEach(el=>observer.observe(el));
-
+document.querySelectorAll('.card,.step').forEach(el=>observer.observe(el));
 </script>
 
 </body>
