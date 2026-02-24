@@ -1,24 +1,13 @@
 <!DOCTYPE html>
 
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JRY Marketing Studio</title>
 
-
-<!-- Google Font -->
-
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-
-<!-- Favicon -->
-
-
 <link rel="icon" type="image/png" href="images/favicon.png">
-
 
 <style>
 /* ===== GLOBAL ===== */
@@ -28,30 +17,26 @@ html{scroll-behavior:smooth}
 section{padding:120px 8vw}
 a{text-decoration:none;color:inherit}
 
-/* Background design */
+/* ===== PREMIUM BACKGROUND ===== */
 body::before{
 content:"";
 position:fixed;
-top:-200px;
-left:-200px;
-width:600px;
-height:600px;
-background:radial-gradient(circle,#2E6F5715,transparent 60%);
+top:-150px;left:-150px;
+width:500px;height:500px;
+background:radial-gradient(circle,#2E6F5720,transparent 60%);
 z-index:-1;
 }
 
 body::after{
 content:"";
 position:fixed;
-bottom:-200px;
-right:-200px;
-width:600px;
-height:600px;
-background:radial-gradient(circle,#6B4F3B15,transparent 60%);
+bottom:-150px;right:-150px;
+width:500px;height:500px;
+background:radial-gradient(circle,#00000010,transparent 60%);
 z-index:-1;
 }
 
-/* ===== NAVBAR ===== */
+/* ===== NAVBAR (CONTRAST PRO VERSION) ===== */
 nav{
 position:fixed;
 width:100%;
@@ -59,27 +44,27 @@ top:0;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px 8vw;
-background:rgba(245,243,239,.7);
-backdrop-filter:blur(12px);
+padding:18px 8vw;
+background:#ffffffee; /* contrast with background */
+backdrop-filter:blur(14px);
+border-bottom:1px solid #e5e3df;
 z-index:999;
 }
 
-.logo{font-weight:700;letter-spacing:.5px}
+.logo{font-weight:700;font-size:18px;letter-spacing:1px}
 
-.menu{display:flex;gap:28px;align-items:center}
-.menu a{opacity:.7;transition:.3s}
+.menu{display:flex;gap:26px;align-items:center}
+.menu a{opacity:.7;font-size:14px;transition:.3s}
 .menu a:hover{opacity:1}
 
 .cta{
 background:#2E6F57;
 color:#fff;
-padding:10px 20px;
+padding:10px 22px;
 border-radius:30px;
-box-shadow:0 6px 18px rgba(0,0,0,.1);
+box-shadow:0 8px 20px rgba(0,0,0,.12);
 transition:.3s;
 }
-
 .cta:hover{transform:translateY(-3px)}
 
 /* ===== HERO ===== */
@@ -90,11 +75,11 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding-top:80px;
+padding-top:100px;
 }
 
 .hero h1{
-font-size:clamp(2.8rem,5vw,4.5rem);
+font-size:clamp(3rem,5vw,4.6rem);
 max-width:900px;
 letter-spacing:-1px;
 margin-bottom:20px;
@@ -102,7 +87,7 @@ animation:fadeUp 1s ease;
 }
 
 .hero p{
-max-width:600px;
+max-width:640px;
 color:#555;
 font-size:1.2rem;
 animation:fadeUp 1.3s ease;
@@ -111,52 +96,74 @@ animation:fadeUp 1.3s ease;
 .hero-buttons{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap}
 
 .btn{
-padding:14px 26px;
+padding:14px 28px;
 border-radius:40px;
 font-weight:600;
 transition:.3s;
 }
 
 .primary{background:#2E6F57;color:white}
-.primary:hover{transform:translateY(-4px)}
+.primary:hover{transform:translateY(-4px);box-shadow:0 10px 25px rgba(0,0,0,.15)}
 
 .secondary{border:1px solid #1E1E1E}
 .secondary:hover{background:#1E1E1E;color:#fff}
+
+/* ===== TRUST STRIP ===== */
+.trust{
+background:#fff;
+padding:50px 8vw;
+display:flex;
+justify-content:center;
+gap:60px;
+flex-wrap:wrap;
+opacity:.8;
+}
+.trust img{height:28px;filter:grayscale(1);opacity:.6}
 
 /* ===== SERVICES ===== */
 .services{background:#fff;text-align:center}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;margin-top:60px}
 .card{
 background:#F5F3EF;
-border-radius:18px;
+border-radius:20px;
 overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,.05);
+box-shadow:0 12px 35px rgba(0,0,0,.06);
 transition:.4s;
 }
-.card img{width:100%;height:180px;object-fit:cover}
-.card-content{padding:24px}
-.card:hover{transform:translateY(-10px)}
+.card img{width:100%;height:200px;object-fit:cover}
+.card-content{padding:26px}
+.card:hover{transform:translateY(-12px)}
 
-/* ===== PORTFOLIO ===== */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin-top:50px}
-.work{border-radius:16px;overflow:hidden;position:relative}
-.work img{width:100%;height:220px;object-fit:cover;transition:.5s}
-.work:hover img{transform:scale(1.1)}
+/* ===== ROOFING NICHE ===== */
+.roofing{
+background:linear-gradient(180deg,#F5F3EF,#ffffff);
+text-align:center;
+}
+.roofing-box{
+max-width:900px;
+margin:auto;
+padding:50px;
+border-radius:20px;
+background:#fff;
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
 
 /* ===== PROCESS ===== */
 .process{display:flex;flex-direction:column;gap:24px;margin-top:40px}
-.step{padding-left:20px;border-left:3px solid #2E6F57;opacity:.8}
+.step{padding-left:20px;border-left:3px solid #2E6F57;opacity:.85}
 
-/* ===== ABOUT ===== */
-.about{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;align-items:center}
-.about img{width:100%;border-radius:18px}
+/* ===== PORTFOLIO ===== */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin-top:50px}
+.work{border-radius:16px;overflow:hidden}
+.work img{width:100%;height:230px;object-fit:cover;transition:.6s}
+.work:hover img{transform:scale(1.1)}
 
 /* ===== CONTACT ===== */
 .contact{background:#fff;text-align:center}
-form{max-width:500px;margin:auto;display:flex;flex-direction:column;gap:14px;margin-top:30px}
-input,textarea{padding:14px;border-radius:10px;border:1px solid #ddd}
+form{max-width:520px;margin:auto;display:flex;flex-direction:column;gap:14px;margin-top:30px}
+input,textarea{padding:15px;border-radius:12px;border:1px solid #ddd}
 button{
-padding:14px;
+padding:15px;
 background:#2E6F57;
 color:white;
 border:none;
@@ -176,20 +183,17 @@ position:fixed;
 bottom:25px;
 right:25px;
 background:#25D366;
-width:60px;
-height:60px;
+width:60px;height:60px;
 border-radius:50%;
 display:flex;
-justify-content:center;
-align-items:center;
-box-shadow:0 10px 25px rgba(0,0,0,.2);
+justify-content:center;align-items:center;
+box-shadow:0 10px 25px rgba(0,0,0,.25);
+z-index:999;
 }
 .whatsapp img{width:30px}
 
-/* ===== FOOTER ===== */
-footer{text-align:center;padding:50px 0;color:#777}
+footer{text-align:center;padding:60px 0;color:#777}
 
-/* ===== ANIMATION ===== */
 @keyframes fadeUp{
 from{opacity:0;transform:translateY(40px)}
 to{opacity:1;transform:translateY(0)}
@@ -200,76 +204,72 @@ section{padding:90px 6vw}
 }
 </style>
 
-
 </head>
 <body>
 
-
 <!-- NAV -->
 
-
 <nav>
-<div class="logo">JRY Marketing Studio</div>
+<div class="logo">JRY</div>
 <div class="menu">
 <a href="#services">Services</a>
-<a href="#process">Process</a>
 <a href="#portfolio">Work</a>
+<a href="#process">Process</a>
 <a href="#contact" class="cta">Start Project</a>
 </div>
 </nav>
 
-
 <!-- HERO -->
 
-
 <section class="hero">
-<h1>Modern Marketing That Feels Human.</h1>
-<p>We design brands, websites, and growth systems that attract premium clients and drive real business results.</p>
+<h1>Marketing Systems That Turn Attention Into Customers.</h1>
+<p>JRY Marketing Studio helps businesses grow with premium branding, high‑converting websites, and lead generation systems built for real results.</p>
 <div class="hero-buttons">
 <a class="btn primary" href="#contact">Start Your Project</a>
-<a class="btn secondary" href="#services">View Services</a>
+<a class="btn secondary" href="#services">Explore Services</a>
 </div>
 </section>
 
+<!-- TRUST -->
+
+<div class="trust">
+<img src="https://dummyimage.com/120x30/ccc/fff&text=CLIENT">
+<img src="https://dummyimage.com/120x30/ccc/fff&text=CLIENT">
+<img src="https://dummyimage.com/120x30/ccc/fff&text=CLIENT">
+<img src="https://dummyimage.com/120x30/ccc/fff&text=CLIENT">
+</div>
 
 <!-- SERVICES -->
-
 
 <section id="services" class="services">
 <h2>Our Services</h2>
 <div class="cards">
 <div class="card">
 <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-<div class="card-content"><h3>Website Design</h3><p>Modern high-converting websites built for branding and performance.</p></div>
+<div class="card-content"><h3>Website Design</h3><p>Modern conversion‑focused websites designed to build authority.</p></div>
 </div>
 <div class="card">
 <img src="https://images.unsplash.com/photo-1552664730-d307ca884978">
-<div class="card-content"><h3>Social Media Growth</h3><p>Content and strategy that builds trust and attracts customers.</p></div>
+<div class="card-content"><h3>Social Media Marketing</h3><p>Content systems that attract and nurture high‑value clients.</p></div>
 </div>
 <div class="card">
 <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f">
-<div class="card-content"><h3>Lead Generation</h3><p>Data-driven systems designed to bring consistent inquiries.</p></div>
+<div class="card-content"><h3>Lead Generation</h3><p>Performance strategies that deliver consistent inquiries.</p></div>
 </div>
 </div>
 </section>
 
+<!-- ROOFING NICHE -->
 
-<!-- PROCESS -->
-
-
-<section id="process">
-<h2>Our Process</h2>
-<div class="process">
-<div class="step">01 — Strategy Planning</div>
-<div class="step">02 — Design & Development</div>
-<div class="step">03 — Launch</div>
-<div class="step">04 — Growth Optimization</div>
+<section class="roofing">
+<div class="roofing-box">
+<h2>Built For Roofing Companies</h2>
+<p>We specialize in helping roofing contractors in the US generate qualified leads through websites, ads, and automated marketing funnels.</p>
+<a class="btn primary" href="#contact">Get Roofing Leads</a>
 </div>
 </section>
-
 
 <!-- PORTFOLIO -->
-
 
 <section id="portfolio">
 <h2>Selected Work</h2>
@@ -280,21 +280,19 @@ section{padding:90px 6vw}
 </div>
 </section>
 
+<!-- PROCESS -->
 
-<!-- ABOUT -->
-
-
-<section class="about">
-<img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d">
-<div>
-<h2>About JRY Marketing Studio</h2>
-<p>We help businesses grow through modern marketing systems that combine design, strategy, and performance. Our goal is simple — build brands that look premium and convert consistently.</p>
+<section id="process">
+<h2>Our Process</h2>
+<div class="process">
+<div class="step">01 — Strategy & Positioning</div>
+<div class="step">02 — Design & Build</div>
+<div class="step">03 — Launch & Optimization</div>
+<div class="step">04 — Scale & Growth</div>
 </div>
 </section>
 
-
 <!-- CONTACT -->
-
 
 <section id="contact" class="contact">
 <h2>Let's Work Together</h2>
@@ -305,21 +303,18 @@ section{padding:90px 6vw}
 <button type="submit">Send Message</button>
 </form>
 <div class="socials">
-<a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"></a>
-<a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"></a>
+<a href="https://www.facebook.com/share/18TQPtamkd/?mibextid=wwXIfr"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png"></a>
+<a href="https://wa.me/60167611473"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"></a>
 </div>
 </section>
-
 
 <footer>
 <p>© 2026 JRY Marketing Studio</p>
 </footer>
 
-
-<a class="whatsapp" href="#">
+<a class="whatsapp" href="https://wa.me/60167611473">
 <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
 </a>
-
 
 </body>
 </html>
