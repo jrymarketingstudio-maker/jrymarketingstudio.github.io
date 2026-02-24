@@ -1,384 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JRY Marketing Studio — Roofing Lead Generation</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --cream: #F5F5F0;
-      --light-gray: #E0E0E0;
-      --gray: #6B7280;
-      --dark-gray: #374151;
-      --green: #4CAF50;
-      --green-dark: #388E3C;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--cream);
-      color: var(--dark-gray);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    h1, h2, h3 { font-family: 'Poppins', sans-serif; font-weight: 700; }
-    .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRY Marketing Studio</title>
 
-    /* Navbar */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      background: rgba(245,245,240,0.92);
-      backdrop-filter: blur(12px);
-      z-index: 1000;
-      padding: 1.2rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-      transition: all 0.3s ease;
-    }
-    .logo { font-size: 1.8rem; font-weight: 700; color: var(--dark-gray); }
-    .nav-links { display: flex; align-items: center; gap: 2.5rem; }
-    .nav-links a { color: var(--gray); text-decoration: none; font-weight: 500; transition: color 0.3s; }
-    .nav-links a:hover { color: var(--dark-gray); }
-    .cta-btn {
-      background: var(--green);
-      color: white;
-      padding: 0.7rem 1.6rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    .cta-btn:hover { background: var(--green-dark); transform: translateY(-2px); }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    /* Hero */
-    #hero {
-      height: 100vh;
-      min-height: 800px;
-      display: flex;
-      align-items: center;
-      background: radial-gradient(circle at 30% 70%, #E8ECEF 0%, var(--cream) 60%);
-      position: relative;
-      overflow: hidden;
-    }
-    #hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url('https://www.enviroshake.com/wp-content/uploads/2025/05/1a.webp') center/cover no-repeat;
-      opacity: 0.12;
-      z-index: 0;
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 900px; }
-    .hero-content h1 { font-size: clamp(3rem, 8vw, 5.5rem); color: var(--dark-gray); margin-bottom: 1.2rem; }
-    .hero-content p { font-size: 1.35rem; color: var(--gray); max-width: 700px; margin-bottom: 2.5rem; }
-    .btn-group { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    .btn-primary { background: var(--green); color: white; }
-    .btn-secondary { background: transparent; border: 2px solid var(--gray); color: var(--dark-gray); }
-    .btn-primary, .btn-secondary {
-      padding: 1rem 2.2rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.4s ease;
-    }
-    .btn-primary:hover { background: var(--green-dark); transform: scale(1.05); }
-    .btn-secondary:hover { border-color: var(--dark-gray); transform: scale(1.05); }
+<style>
+/* ===== GLOBAL ===== */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#f7f5f0;color:#222;overflow-x:hidden;position:relative;}
+html{scroll-behavior:smooth;}
+a{color:inherit;text-decoration:none;}
 
-    /* Sections */
-    section { padding: 8rem 0; }
-    h2 { font-size: 3.2rem; text-align: center; margin-bottom: 4rem; color: var(--dark-gray); }
+/* ===== MOUSE GLOW ===== */
+.glow{
+position:fixed;
+width:300px;height:300px;
+background:radial-gradient(circle,#cccccc22,transparent 60%);
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:0;
+transition:all 0.1s ease-out;
+}
 
-    /* Services */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2.5rem;
-    }
-    .card {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      transition: all 0.4s ease;
-    }
-    .card:hover { transform: translateY(-12px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
-    .card img { width: 100%; height: 220px; object-fit: cover; }
-    .card-content { padding: 2rem; }
-    .card h3 { font-size: 1.6rem; margin-bottom: 1rem; }
+/* ===== NAVBAR ===== */
+nav{
+position:fixed;width:100%;padding:20px 8%;
+display:flex;justify-content:space-between;align-items:center;
+background:rgba(247,245,240,0.9);
+backdrop-filter:blur(12px);z-index:100;box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+nav h3{font-weight:700;color:#333;}
+nav a{margin-left:25px;font-size:14px;transition:.3s;color:#333;}
+nav a:hover{color:#555;}
 
-    /* Niche */
-    .niche { display: flex; align-items: center; gap: 4rem; flex-wrap: wrap; }
-    .niche-img { flex: 1; min-width: 400px; }
-    .niche-img img { width: 100%; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-    .niche-text { flex: 1; }
-    .niche-text h2 { text-align: left; font-size: 3rem; }
+/* ===== HERO ===== */
+.hero{
+height:100vh;display:flex;flex-direction:column;
+justify-content:center;align-items:center;text-align:center;
+background:linear-gradient(135deg,#f7f5f0,#e0ded9);
+position:relative;overflow:hidden;
+}
+.hero h1{font-size:64px;max-width:900px;line-height:1.2;margin-bottom:20px;animation:fadeUp 1s ease;}
+.hero p{color:#555;margin-bottom:30px;animation:fadeUp 1.3s ease;}
+.btn{padding:14px 30px;border-radius:40px;border:none;cursor:pointer;margin:10px;font-weight:600;transition:.3s;}
+.primary{background:#333;color:#f7f5f0;}
+.primary:hover{transform:translateY(-4px);}
+.secondary{background:transparent;border:1px solid #333;color:#333;}
+.secondary:hover{background:#333;color:#f7f5f0;}
 
-    /* ROI */
-    .roi-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-    }
-    .metric {
-      background: white;
-      padding: 2.5rem;
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-      transition: all 0.3s;
-    }
-    .metric:hover { transform: scale(1.06); }
-    .metric .number { font-size: 3.5rem; color: var(--green); font-weight: 700; }
+/* ===== SECTIONS ===== */
+section{padding:120px 10%;position:relative;z-index:2;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;}
+.card{background:#fff;color:#333;padding:40px;border-radius:20px;transform:translateY(60px);opacity:0;transition:.7s;}
+.card.show{opacity:1;transform:translateY(0);}
+.card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(0,0,0,.15);}
 
-    /* Testimonials */
-    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; }
-    .testimonial { background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.06); transition: all 0.3s; }
-    .testimonial:hover { transform: translateY(-8px); }
-    .client { margin-top: 1.5rem; font-weight: 600; }
+/* ===== PROCESS ===== */
+.process{display:flex;flex-direction:column;gap:30px;}
+.step{border-left:2px solid #ccc;padding-left:20px;opacity:0;transform:translateX(-30px);transition:.6s;}
+.step.show{opacity:1;transform:translateX(0);}
 
-    /* Pricing */
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
-    .price-card {
-      background: white;
-      border-radius: 20px;
-      padding: 2.5rem;
-      text-align: center;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.08);
-      transition: all 0.4s;
-    }
-    .price-card:hover { transform: translateY(-15px); box-shadow: 0 25px 60px rgba(0,0,0,0.12); }
-    .price-card h3 { font-size: 2.2rem; margin: 1rem 0; }
-    .price { font-size: 3.5rem; color: var(--green); }
+/* ===== TESTIMONIALS ===== */
+.testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;}
+.testimonial{background:#fff;padding:30px;border-radius:20px;transform:translateY(60px);opacity:0;transition:.7s;}
+.testimonial.show{opacity:1;transform:translateY(0);}
+.testimonial p{font-style:italic;color:#555;margin-bottom:10px;}
+.testimonial h4{font-weight:600;color:#333;}
 
-    /* Audit */
-    #audit {
-      background: linear-gradient(135deg, #E8F5E9 0%, var(--cream) 100%);
-      border-radius: 24px;
-      margin: 0 5%;
-      padding: 6rem 8%;
-      text-align: center;
-    }
-    #audit h2 { font-size: 3.5rem; }
+/* ===== ROI SECTION ===== */
+.roi{background:#e0ded9;padding:80px 10%;border-radius:20px;margin:60px 0;text-align:center;}
+.roi h2{margin-bottom:20px;}
+.roi p{margin-bottom:40px;line-height:1.5;color:#555;}
 
-    /* Contact */
-    #contact form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    input, textarea {
-      padding: 1rem;
-      border: 1px solid var(--light-gray);
-      border-radius: 12px;
-      font-family: inherit;
-    }
-    footer { text-align: center; padding: 3rem; color: var(--gray); }
+/* ===== LEAD MAGNET ===== */
+.lead-magnet{background:#fff;padding:60px 10%;border-radius:20px;text-align:center;margin-bottom:80px;}
+.lead-magnet input{padding:15px;width:60%;border-radius:30px;border:1px solid #ccc;margin-right:10px;}
+.lead-magnet button{padding:15px 25px;border-radius:30px;border:none;background:#333;color:#f7f5f0;cursor:pointer;transition:.3s;}
+.lead-magnet button:hover{transform:translateY(-3px);}
 
-    /* Floating CTA */
-    #float-cta {
-      position: fixed;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: white;
-      padding: 1rem 2rem;
-      border-radius: 50px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      z-index: 999;
-      opacity: 0;
-      transition: opacity 0.5s;
-    }
-    #float-cta.visible { opacity: 1; }
+/* ===== PRICING ===== */
+.pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;margin-top:40px;}
+.pricing-card{background:#fff;padding:40px;border-radius:20px;text-align:center;transform:translateY(60px);opacity:0;transition:.7s;}
+.pricing-card.show{opacity:1;transform:translateY(0);}
+.pricing-card h3{margin-bottom:15px;}
+.pricing-card p{margin-bottom:10px;}
+.pricing-card span{font-size:32px;font-weight:700;color:#333;}
 
-    @media (max-width: 768px) {
-      .niche { flex-direction: column; }
-      .btn-group { flex-direction: column; }
-    }
-  </style>
+/* ===== CONTACT ===== */
+.contact{background:#f7f5f0;padding:80px 10%;border-radius:20px;text-align:center;margin-bottom:80px;}
+.contact form{max-width:600px;margin:0 auto;display:flex;flex-direction:column;}
+.contact input, .contact textarea{width:100%;padding:15px;margin:10px 0;border:none;border-radius:10px;background:#e0ded9;color:#333;}
+.contact button{background:#333;color:#f7f5f0;padding:15px;border:none;border-radius:30px;cursor:pointer;transition:.3s;}
+.contact button:hover{transform:translateY(-3px);}
+
+/* ===== FOOTER ===== */
+footer{text-align:center;padding:40px;border-top:1px solid #ddd;}
+.socials{margin-top:15px;}
+.socials a{margin:0 10px;display:inline-block;transition:.3s;}
+.socials a:hover{opacity:.7;}
+.socials img{width:28px;filter:invert(0);}
+
+/* ===== STICKY CTA ===== */
+.sticky-cta{position:fixed;bottom:20px;right:20px;background:#333;color:#f7f5f0;padding:15px 25px;border-radius:50px;box-shadow:0 10px 25px rgba(0,0,0,.2);cursor:pointer;z-index:999;transition:.3s;}
+.sticky-cta:hover{transform:translateY(-3px);}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+
+/* ===== CALENDLY EMBED ===== */
+.calendly-inline-widget{min-width:320px;height:600px;}
+</style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav>
-    <div class="logo">JRY</div>
-    <div class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#" class="cta-btn">Book Strategy Call</a>
-    </div>
-  </nav>
+<div class="glow"></div>
 
-  <!-- Hero -->
-  <section id="hero">
-    <div class="container hero-content">
-      <h1>Modern Marketing Systems That Generate Real Clients.</h1>
-      <p>We help US roofing companies attract qualified leads through premium websites, ads, and automated funnels.</p>
-      <div class="btn-group">
-        <a href="#" class="btn-primary cta-btn">Start Project</a>
-        <a href="#services" class="btn-secondary">View Services</a>
-      </div>
-    </div>
-  </section>
+<!-- NAVBAR -->
+<nav>
+<h3>JRY</h3>
+<div>
+<a href="#services">Services</a>
+<a href="#process">Process</a>
+<a href="#pricing">Pricing</a>
+<a href="#lead">Free Audit</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
 
-  <!-- Services -->
-  <section id="services">
-    <div class="container">
-      <h2>Our Services</h2>
-      <div class="services-grid">
-        <div class="card">
-          <img src="https://www.framer.com/creators-assets/_next/image/?url=https%3A%2F%2Fy4pdgnepgswqffpt.public.blob.vercel-storage.com%2Ftemplates%2F56504%2Fmitchy-U2OVSbHzWxTyPZnsmrzCcuZGrjuZlr&w=3840&q=100" alt="Website Design">
-          <div class="card-content">
-            <h3>Website Design</h3>
-            <p>Conversion-focused, authority-driven websites built to position your roofing company as the trusted local expert.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://blog.coupler.io/wp-content/uploads/2025/05/29-shopify-marketing-funnel-dashboard.png" alt="Lead Generation">
-          <div class="card-content">
-            <h3>Lead Generation</h3>
-            <p>High-performance funnels & paid ads that deliver qualified roofing leads at scale.</p>
-          </div>
-        </div>
-        <div class="card">
-          <img src="https://framerusercontent.com/images/jMn3UOFn2PNUWybevsu6ycHIck.png" alt="Automation">
-          <div class="card-content">
-            <h3>Automation Systems</h3>
-            <p>24/7 follow-ups, smart CRM integration, and nurturing sequences that book more estimates automatically.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- HERO -->
+<div class="hero">
+<h1>Built For Roofing Companies</h1>
+<p>We specialize in helping roofing contractors in the US generate qualified leads through websites, ads, and automated marketing funnels.</p>
+<a class="btn primary" href="#lead">Get Roofing Leads</a>
+<a class="btn secondary" href="#services">View Services</a>
+</div>
 
-  <!-- Roofing Niche -->
-  <section class="niche-section">
-    <div class="container niche">
-      <div class="niche-img">
-        <img src="https://jtechconst.com/wp-content/uploads/2024/10/roofers-at-work.webp" alt="Professional roofing installation">
-      </div>
-      <div class="niche-text">
-        <h2>Built For Roofing Companies</h2>
-        <p style="font-size:1.25rem; margin:2rem 0;">Our systems are crafted specifically for roofing contractors — targeting ready-to-buy homeowners, maximizing estimate bookings, and increasing revenue with proven lead gen strategies that deliver 3–5× more qualified opportunities.</p>
-        <a href="#" class="cta-btn">Get Roofing Leads</a>
-      </div>
-    </div>
-  </section>
+<!-- SERVICES -->
+<section id="services">
+<h2 style="margin-bottom:40px;">Our Services</h2>
+<div class="cards">
+<div class="card"><h3>Website Design</h3><p>High-converting modern websites built for speed and branding.</p></div>
+<div class="card"><h3>Digital Marketing</h3><p>Performance campaigns focused on ROI and measurable growth.</p></div>
+<div class="card"><h3>Brand Strategy</h3><p>Create authority positioning that attracts premium clients.</p></div>
+</div>
+</section>
 
-  <!-- ROI -->
-  <section id="roi">
-    <div class="container">
-      <h2>Real Results</h2>
-      <div class="roi-grid">
-        <div class="metric"><div class="number">3–5×</div><p>Lead Increase</p></div>
-        <div class="metric"><div class="number">40%</div><p>Lower Cost Per Lead</p></div>
-        <div class="metric"><div class="number">24/7</div><p>Automated Follow-Up</p></div>
-      </div>
-    </div>
-  </section>
+<!-- PROCESS -->
+<section id="process">
+<h2 style="margin-bottom:40px;">Our Process</h2>
+<div class="process">
+<div class="step">01 — Strategy Planning</div>
+<div class="step">02 — Design & Development</div>
+<div class="step">03 — Launch</div>
+<div class="step">04 — Growth Optimization</div>
+</div>
+</section>
 
-  <!-- Testimonials -->
-  <section id="testimonials">
-    <div class="container">
-      <h2>What Roofing Owners Say</h2>
-      <div class="testimonials-grid">
-        <div class="testimonial">
-          <p>“JRY transformed our lead flow—doubled our booked estimates in just months.”</p>
-          <div class="client">John D. — Dallas, TX</div>
-        </div>
-        <div class="testimonial">
-          <p>“The automation saved us hours every day. Best investment we’ve made.”</p>
-          <div class="client">Sarah M. — Chicago, IL</div>
-        </div>
-        <div class="testimonial">
-          <p>“Premium websites that actually convert. Leads are higher quality than ever.”</p>
-          <div class="client">Mike R. — Miami, FL</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- ROI -->
+<section class="roi">
+<h2>Return on Investment</h2>
+<p>Our clients see measurable lead generation, cost-effective campaigns, and improved online presence that drives revenue.</p>
+</section>
 
-  <!-- Pricing -->
-  <section id="pricing">
-    <div class="container">
-      <h2>Choose Your Growth Path</h2>
-      <div class="pricing-grid">
-        <div class="price-card">
-          <h3>Starter</h3>
-          <div class="price">$997</div>
-          <p>Website + Setup</p>
-          <a href="#" class="cta-btn" style="margin-top:1.5rem;">Choose Plan</a>
-        </div>
-        <div class="price-card">
-          <h3>Growth</h3>
-          <div class="price">$1,997</div>
-          <p>Funnels + Ads</p>
-          <a href="#" class="cta-btn" style="margin-top:1.5rem;">Choose Plan</a>
-        </div>
-        <div class="price-card">
-          <h3>Scale</h3>
-          <div class="price">$3,500+</div>
-          <p>Full Marketing System</p>
-          <a href="#" class="cta-btn" style="margin-top:1.5rem;">Choose Plan</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- LEAD MAGNET -->
+<section id="lead" class="lead-magnet">
+<h2>Free Roofing Website Audit</h2>
+<input type="text" placeholder="Your Name">
+<input type="email" placeholder="Email Address">
+<button>Get My Free Audit</button>
+</section>
 
-  <!-- Free Audit -->
-  <section id="audit">
-    <div class="container">
-      <h2>Free Roofing Marketing Audit</h2>
-      <p style="font-size:1.4rem; max-width:700px; margin:1.5rem auto;">Discover hidden opportunities and get a custom roadmap to 3–5× more leads — no strings attached.</p>
-      <a href="#" class="cta-btn" style="font-size:1.3rem; padding:1.2rem 3rem;">Request Free Audit</a>
-    </div>
-  </section>
+<!-- PRICING -->
+<section id="pricing">
+<h2 style="margin-bottom:40px;">Pricing</h2>
+<div class="pricing">
+<div class="pricing-card">
+<h3>Starter</h3>
+<span>$998</span>
+<p>Website + Setup</p>
+</div>
+<div class="pricing-card">
+<h3>Growth</h3>
+<span>$1,498</span>
+<p>Funnels + Ads</p>
+</div>
+<div class="pricing-card">
+<h3>Scale</h3>
+<span>$3,498+</span>
+<p>Full Marketing System</p>
+</div>
+</div>
+</section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <div class="container">
-      <h2>Get In Touch</h2>
-      <form>
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
-        <textarea rows="6" placeholder="Tell us about your roofing business..." required></textarea>
-        <button type="submit" class="cta-btn">Send Message</button>
-      </form>
-    </div>
-  </section>
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+<h2 style="margin-bottom:40px;">What Our Clients Say</h2>
+<div class="testimonial">
+<p>"Our roofing leads increased 5x after JRY redesigned our website!"</p>
+<h4>John D., Roofing Co.</h4>
+</div>
+<div class="testimonial">
+<p>"Professional, fast, and ROI-driven marketing solutions."</p>
+<h4>Sarah K., Roofing Co.</h4>
+</div>
+<div class="testimonial">
+<p>"We finally have a system that generates clients automatically."</p>
+<h4>Mike L., Roofing Co.</h4>
+</div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 JRY Marketing Studio. All rights reserved.</p>
-  </footer>
+<!-- CONTACT -->
+<section id="contact" class="contact">
+<h2>Contact Us</h2>
+<form>
+<input type="text" placeholder="Your Name">
+<input type="email" placeholder="Email Address">
+<textarea placeholder="Tell us about your project"></textarea>
+<button>Send Message</button>
+</form>
+<div class="socials">
+<a href="https://www.facebook.com/share/18TQPtamkd/?mibextid=wwXIfr"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+<a href="https://wa.me/60167611473"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp"></a>
+</div>
+</section>
 
-  <!-- Floating CTA -->
-  <div id="float-cta">
-    <span>Ready to get more roofing leads?</span>
-    <a href="#" class="cta-btn">Book Call</a>
-  </div>
+<!-- STICKY CTA -->
+<a class="sticky-cta" href="#lead">Book Your Free Audit</a>
 
-  <script>
-    // Show floating CTA after scrolling
-    window.addEventListener('scroll', () => {
-      const cta = document.getElementById('float-cta');
-      if (window.scrollY > 400) {
-        cta.classList.add('visible');
-      } else {
-        cta.classList.remove('visible');
-      }
-    });
-  </script>
+<!-- FLOATING CALENDLY -->
+<div id="calendly-embed" style="margin:50px auto;max-width:600px;">
+<div class="calendly-inline-widget" data-url="YOUR_CALENDLY_LINK"></div>
+</div>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+<!-- ANIMATIONS -->
+<script>
+/* MOUSE GLOW */
+const glow=document.querySelector('.glow');
+document.addEventListener('mousemove',e=>{
+glow.style.left=e.clientX+'px';
+glow.style.top=e.clientY+'px';
+});
+
+/* SCROLL REVEAL */
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){entry.target.classList.add('show');}
+});
+});
+document.querySelectorAll('.card,.step,.testimonial,.pricing-card').forEach(el=>observer.observe(el));
+</script>
 
 </body>
 </html>
