@@ -180,3 +180,19 @@ footer .social img:hover {
     .banner-text p {font-size:1em;}
     nav .btn {width:100%; text-align:center;}
 }
+
+/* ===== STICKY CTA FLOAT ANIMATION ===== */
+@keyframes floatButton {
+  0% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
+.sticky-cta.show .btn.primary {
+  animation: floatButton 2.5s ease-in-out infinite;
+  transition: transform 0.3s;
+}
+
+.sticky-cta .btn.primary:hover {
+  transform: translateX(-50%) scale(1.08);
+}
