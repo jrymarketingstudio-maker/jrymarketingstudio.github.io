@@ -196,3 +196,36 @@ footer .social img:hover {
 .sticky-cta .btn.primary:hover {
   transform: translateX(-50%) scale(1.08);
 }
+
+@keyframes floatSide {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+  100% { transform: translateX(0); }
+}
+
+.whatsapp {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #25D366;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,.2);
+  z-index: 999;
+  animation: floatSide 2.5s ease-in-out infinite;
+  transition: transform 0.3s ease-out;
+}
+
+.whatsapp:hover {
+  transform: scale(1.2); /* 放大 */
+  animation-play-state: paused; /* 停止左右漂浮 */
+}
+
+.whatsapp img {
+  width: 28px; /* 保持按钮内图标小而精致 */
+  transition: transform 0.3s ease-out;
+}
