@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -10,181 +9,102 @@
 <link rel="icon" type="image/png" href="images/favicon.png">
 
 <style>
-/* ======================================================
-   AGENCY PRO MAX — COMMERCIAL VERSION
-   Starbucks‑Inspired Premium Layout
-   ====================================================== */
-
 :root{
 --cream:#F5F3EF;
 --green:#2E6F57;
 --dark:#1E1E1E;
 --muted:#6b6b6b;
+--light-gray:#cccccc33;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 html{scroll-behavior:smooth}
-body{background:var(--cream);color:var(--dark);overflow-x:hidden}
+body{background:var(--cream);color:var(--dark);overflow-x:hidden;position:relative}
 a{text-decoration:none;color:inherit}
-section{padding:120px 8vw;position:relative}
+section{padding:120px 8vw;position:relative;z-index:1}
 
-/* ===== APPLE STYLE BACKGROUND ===== */
-body::before{
-content:"";
-position:fixed;
-width:700px;height:700px;
-top:-250px;left:-200px;
-background:radial-gradient(circle,var(--green)20%,transparent 70%);
-opacity:.08;z-index:-2;
-}
-body::after{
-content:"";
-position:fixed;
-width:700px;height:700px;
-bottom:-250px;right:-200px;
-background:radial-gradient(circle,#8b6a4e30,transparent 70%);
-opacity:.12;z-index:-2;
-}
+/* ===== MICRO PARTICLES & MOUSE GLOW ===== */
+#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.particle{position:absolute;width:3px;height:3px;background:var(--light-gray);border-radius:50%;}
+
+.glow{position:fixed;width:350px;height:350px;background:radial-gradient(circle,#cccccc33,transparent 60%);pointer-events:none;transform:translate(-50%,-50%);z-index:2;transition:all .1s ease-out}
+
+/* ===== FLOATING SHAPES ===== */
+.floating-shape{position:absolute;pointer-events:none;opacity:0.15;transition:transform .1s}
+.floating-shape.circle{border-radius:50%;background:linear-gradient(135deg,#e0ded9,#f7f5f0)}
+.floating-shape.rect{border-radius:15px;background:linear-gradient(135deg,#f1efe9,#e0ded9)}
+.floating-shape.abstract{width:120px;height:120px;background:radial-gradient(circle,#cccccc22,transparent 70%);border-radius:50%;}
 
 /* ===== NAVBAR ===== */
-nav{
-position:fixed;
-top:0;width:100%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 8vw;
-background:rgba(255,255,255,.75);
-backdrop-filter:blur(14px);
-border-bottom:1px solid #eaeaea;
-z-index:999;
-transition:.4s;
-}
-
+nav{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 8vw;background:rgba(255,255,255,.75);backdrop-filter:blur(14px);border-bottom:1px solid #eaeaea;z-index:999;transition:.4s}
 .logo{font-weight:700;letter-spacing:2px}
 .menu{display:flex;gap:28px;align-items:center}
 .menu a{opacity:.7;transition:.3s}
 .menu a:hover{opacity:1}
 
-.cta{
-background:var(--green);
-color:#fff;
-padding:10px 22px;
-border-radius:30px;
-transition:.3s;
-}
-.cta:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(0,0,0,.15)}
-
 /* ===== HERO ===== */
-.hero{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding-top:100px;
-}
-
-.hero h1{
-font-size:clamp(3rem,6vw,4.8rem);
-letter-spacing:-1.2px;
-max-width:900px;
-margin-bottom:22px;
-}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:100px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(3rem,6vw,4.8rem);letter-spacing:-1.2px;max-width:900px;margin-bottom:22px}
 .hero p{max-width:620px;color:var(--muted);font-size:1.2rem}
-
 .hero-buttons{margin-top:40px;display:flex;gap:18px;flex-wrap:wrap}
-
-.btn{
-padding:15px 28px;
-border-radius:40px;
-font-weight:600;
-transition:.35s;
-}
+.btn{padding:15px 28px;border-radius:40px;font-weight:600;transition:.35s}
 .primary{background:var(--green);color:#fff}
 .secondary{border:1px solid var(--dark)}
-.btn:hover{transform:translateY(-4px)}
-.secondary:hover{background:var(--dark);color:#fff}
-
-/* ===== TRUST LOGOS ===== */
-.trust{display:flex;justify-content:center;gap:60px;flex-wrap:wrap;opacity:.6;margin-top:60px}
-.trust img{height:34px;filter:grayscale(1)}
+.btn:hover{transform:translateY(-4px) scale(1.05) rotateX(1deg) rotateY(1deg)}
 
 /* ===== SERVICES ===== */
-.services{background:#fff;text-align:center}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;margin-top:60px}
-.card{background:var(--cream);border-radius:20px;overflow:hidden;transition:.4s;box-shadow:0 10px 30px rgba(0,0,0,.05)}
+.services{background:#fff;text-align:center;position:relative;overflow:hidden}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;margin-top:60px;perspective:1000px}
+.card{background:var(--cream);border-radius:20px;overflow:hidden;transition:.4s;box-shadow:0 10px 30px rgba(0,0,0,.05);transform-style:preserve-3d}
 .card img{width:100%;height:200px;object-fit:cover}
 .card-content{padding:26px}
-.card:hover{transform:translateY(-12px)}
+.card:hover{transform:translateY(-12px) rotateX(2deg) rotateY(2deg) scale(1.04);box-shadow:0 20px 40px rgba(0,0,0,.15)}
 
-/* ===== ROOFING SECTION ===== */
-.roofing{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:50px;
-align-items:center;
-}
+/* ===== ROOFING NICHE ===== */
+.roofing{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:50px;align-items:center;position:relative;overflow:hidden}
 .roofing img{width:100%;border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,.08)}
 .roofing h2{font-size:2.2rem;margin-bottom:18px}
 .roofing p{color:var(--muted);margin-bottom:26px;line-height:1.7}
 
 /* ===== ROI SECTION ===== */
-.roi{background:#fff;text-align:center}
-.roi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;margin-top:50px}
+.roi{background:#fff;text-align:center;position:relative;overflow:hidden}
+.roi::before{
+content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+background-image:url('https://images.unsplash.com/photo-1590608897129-79f9a88c7f21?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080');
+opacity:0.08;background-size:cover;background-attachment:fixed;z-index:0;
+}
+.roi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;margin-top:50px;position:relative;z-index:1}
 .roi-card{padding:40px;border-radius:18px;background:var(--cream);transition:.4s}
-.roi-card:hover{transform:translateY(-8px)}
+.roi-card:hover{transform:translateY(-8px) rotateX(1deg) rotateY(1deg);box-shadow:0 20px 40px rgba(0,0,0,.12)}
 .roi-card h3{font-size:2rem;color:var(--green)}
 
-/* ===== TESTIMONIALS ===== */
-.testimonials{background:#fafafa;text-align:center}
-.testimonial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin-top:50px}
-.testimonial{background:#fff;padding:30px;border-radius:18px;box-shadow:0 8px 25px rgba(0,0,0,.06)}
-.testimonial p{color:var(--muted);margin-bottom:18px}
-
 /* ===== PRICING ===== */
-.pricing{background:#fff;text-align:center}
-.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;margin-top:50px}
-.price-card{padding:40px;border-radius:20px;background:var(--cream);transition:.4s}
-.price-card:hover{transform:translateY(-10px)}
+.pricing{background:#fff;text-align:center;position:relative;overflow:hidden}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;margin-top:50px;perspective:1000px}
+.price-card{padding:40px;border-radius:20px;background:var(--cream);transition:.4s;transform-style:preserve-3d}
+.price-card:hover{transform:translateY(-10px) rotateX(1deg) rotateY(1deg) scale(1.05);box-shadow:0 20px 50px rgba(0,0,0,.15)}
 .price{font-size:2.2rem;margin:15px 0;color:var(--green)}
 
 /* ===== LEAD MAGNET ===== */
-.audit{background:linear-gradient(135deg,#2E6F57,#204d3e);color:#fff;text-align:center;border-radius:30px;margin:80px 8vw;padding:80px 20px}
+.audit{background:linear-gradient(135deg,#2E6F57,#204d3e);color:#fff;text-align:center;border-radius:30px;margin:80px 8vw;padding:80px 20px;position:relative;overflow:hidden}
 .audit h2{font-size:2.2rem;margin-bottom:15px}
 .audit p{opacity:.9;margin-bottom:30px}
-.audit .btn{background:#fff;color:#000}
+.audit .btn{background:#fff;color:#000;transition:.3s}
+.audit .btn:hover{transform:scale(1.05)}
 
 /* ===== CONTACT ===== */
-.contact{text-align:center}
+.contact{text-align:center;position:relative;z-index:1}
 form{max-width:520px;margin:auto;display:flex;flex-direction:column;gap:14px;margin-top:30px}
 input,textarea{padding:14px;border-radius:10px;border:1px solid #ddd}
-button{padding:14px;background:var(--green);color:#fff;border:none;border-radius:30px;cursor:pointer}
-
-.socials{margin-top:25px;display:flex;justify-content:center;gap:20px}
-.socials img{width:30px}
+button{padding:14px;background:var(--green);color:#fff;border:none;border-radius:30px;cursor:pointer;transition:.3s}
+button:hover{transform:scale(1.05)}
 
 /* ===== FLOAT WHATSAPP ===== */
 .whatsapp{position:fixed;bottom:25px;right:25px;background:#25D366;width:60px;height:60px;border-radius:50%;display:flex;justify-content:center;align-items:center;box-shadow:0 10px 25px rgba(0,0,0,.2);z-index:999}
 .whatsapp img{width:30px}
 
 /* ===== STICKY CTA ===== */
-.sticky-cta{
-position:fixed;
-bottom:-100px;
-left:50%;
-transform:translateX(-50%);
-background:#fff;
-border-radius:40px;
-padding:12px 24px;
-box-shadow:0 10px 30px rgba(0,0,0,.2);
-display:flex;
-gap:16px;
-align-items:center;
-transition:.4s;
-z-index:998;
-}
+.sticky-cta{position:fixed;bottom:-100px;left:50%;transform:translateX(-50%);background:#fff;border-radius:40px;padding:12px 24px;box-shadow:0 10px 30px rgba(0,0,0,.2);display:flex;gap:16px;align-items:center;transition:.4s;z-index:998}
 .sticky-cta.show{bottom:25px}
 
 /* ===== REVEAL ANIMATION ===== */
@@ -196,40 +116,36 @@ section{padding:90px 6vw}
 .hero h1{font-size:2.4rem}
 }
 </style>
-
 </head>
 <body>
 
-<!-- NAV -->
+<!-- PARTICLES & GLOW -->
+<div id="particles"></div>
+<div class="glow"></div>
+<div class="floating-shape circle" style="width:150px;height:150px;top:10%;left:15%;"></div>
+<div class="floating-shape rect" style="width:100px;height:200px;top:60%;left:70%;"></div>
+<div class="floating-shape abstract" style="top:40%;left:40%;"></div>
 
+<!-- NAV -->
 <nav>
 <div class="logo">JRY</div>
 <div class="menu">
 <a href="#services">Services</a>
 <a href="#pricing">Pricing</a>
-<a href="#contact" class="cta">Book Strategy Call</a>
 </div>
 </nav>
 
 <!-- HERO -->
-
-<section class="hero">
+<section class="hero reveal">
 <h1>Modern Marketing Systems That Generate Real Clients.</h1>
 <p>We help US roofing companies attract qualified leads through premium websites, ads, and automated funnels.</p>
 <div class="hero-buttons">
-<a class="btn primary" href="#contact">Start Project</a>
+<a class="btn primary" href="#pricing">View Packages</a>
 <a class="btn secondary" href="#services">View Services</a>
-</div>
-
-<div class="trust">
-<img src="https://images.unsplash.com/photo-1521791136064-7986c2920216">
-<img src="https://images.unsplash.com/photo-1556742400-b5c7c5126c8c">
-<img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df">
 </div>
 </section>
 
 <!-- SERVICES -->
-
 <section id="services" class="services reveal">
 <h2>Our Services</h2>
 <div class="cards">
@@ -248,19 +164,17 @@ section{padding:90px 6vw}
 </div>
 </section>
 
-<!-- ROOFING NICHE -->
-
+<!-- ROOFING -->
 <section class="roofing reveal">
 <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
 <div>
 <h2>Built For Roofing Companies</h2>
 <p>We specialize in helping roofing contractors in the US generate qualified leads through websites, ads, and automated marketing funnels. Our systems are designed to increase booked estimates and revenue — not just traffic.</p>
-<a class="btn primary" href="#contact">Get Roofing Leads</a>
+<a class="btn primary" href="#pricing">Get Roofing Leads</a>
 </div>
 </section>
 
 <!-- ROI -->
-
 <section class="roi reveal">
 <h2>Expected Growth Impact</h2>
 <div class="roi-grid">
@@ -270,40 +184,26 @@ section{padding:90px 6vw}
 </div>
 </section>
 
-<!-- TESTIMONIALS -->
-
-<section class="testimonials reveal">
-<h2>What Clients Say</h2>
-<div class="testimonial-grid">
-<div class="testimonial"><p>"Our roofing leads doubled within 60 days."</p><strong>— Texas Roofing Co.</strong></div>
-<div class="testimonial"><p>"Finally a marketing system that actually works."</p><strong>— Elite Roofing Group</strong></div>
-<div class="testimonial"><p>"Professional branding changed how customers see us."</p><strong>— Apex Roofing</strong></div>
-</div>
-</section>
-
 <!-- PRICING -->
-
 <section id="pricing" class="pricing reveal">
 <h2>Agency Packages</h2>
 <div class="price-grid">
-<div class="price-card"><h3>Starter</h3><div class="price">$997</div><p>Website + Setup</p></div>
-<div class="price-card"><h3>Growth</h3><div class="price">$1,997</div><p>Funnels + Ads</p></div>
-<div class="price-card"><h3>Scale</h3><div class="price">$3,500+</div><p>Full Marketing System</p></div>
+<div class="price-card"><h3>Starter</h3><div class="price">$998</div><p>Website + Setup</p></div>
+<div class="price-card"><h3>Growth</h3><div class="price">$1,498</div><p>Funnels + Ads</p></div>
+<div class="price-card"><h3>Scale</h3><div class="price">$3,498+</div><p>Full Marketing System</p></div>
 </div>
 </section>
 
 <!-- LEAD MAGNET -->
-
 <div class="audit reveal">
 <h2>Free Roofing Marketing Audit</h2>
 <p>Get a personalized strategy showing how many leads your company could generate monthly.</p>
-<a class="btn" href="#contact">Request Free Audit</a>
+<a class="btn" href="#pricing">Request Free Audit</a>
 </div>
 
 <!-- CONTACT -->
-
 <section id="contact" class="contact reveal">
-<h2>Book Your Strategy Call</h2>
+<h2>Contact Us</h2>
 <form>
 <input type="text" placeholder="Your Name" required>
 <input type="email" placeholder="Email Address" required>
@@ -318,18 +218,46 @@ section{padding:90px 6vw}
 
 <footer style="text-align:center;padding:40px;color:#777">© 2026 JRY Marketing Studio</footer>
 
+<!-- FLOAT WHATSAPP -->
 <a class="whatsapp" href="https://wa.me/60167611473">
 <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
 </a>
 
+<!-- STICKY CTA -->
 <div class="sticky-cta" id="stickyCTA">
 <span>Ready to get more roofing leads?</span>
-<a class="cta" href="#contact">Book Call</a>
+<a class="cta" href="#pricing">View Packages</a>
 </div>
 
 <script>
+/* ===== PARTICLES ===== */
+const particlesContainer=document.getElementById('particles');
+for(let i=0;i<80;i++){
+const p=document.createElement('div');
+p.classList.add('particle');
+p.style.left=Math.random()*100+'%';
+p.style.top=Math.random()*100+'%';
+p.style.width=(2+Math.random()*4)+'px';
+p.style.height=(2+Math.random()*4)+'px';
+particlesContainer.appendChild(p);
+}
 
-/* ===== REVEAL ANIMATION ===== */
+/* MOUSE GLOW */
+const glow=document.querySelector('.glow');
+document.addEventListener('mousemove',e=>{
+glow.style.left=e.clientX+'px';
+glow.style.top=e.clientY+'px';
+});
+
+/* FLOATING SHAPES FOLLOW MOUSE */
+document.querySelectorAll('.floating-shape').forEach(shape=>{
+document.addEventListener('mousemove',e=>{
+const speed=shape.classList.contains('circle') ? 0.03 : 0.02;
+shape.style.transform=`translate(${e.clientX*speed}px, ${e.clientY*speed}px)`;
+});
+});
+
+/* SCROLL REVEAL */
 const reveals=document.querySelectorAll('.reveal');
 window.addEventListener('scroll',()=>{
 reveals.forEach(el=>{
@@ -338,14 +266,12 @@ if(top<window.innerHeight-80){el.classList.add('active');}
 });
 });
 
-/* ===== STICKY CTA ===== */
+/* STICKY CTA */
 const sticky=document.getElementById('stickyCTA');
 window.addEventListener('scroll',()=>{
 if(window.scrollY>600){sticky.classList.add('show');}
 else{sticky.classList.remove('show');}
 });
-
 </script>
-
 </body>
 </html>
