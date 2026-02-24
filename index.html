@@ -262,12 +262,22 @@ shape.style.transform=`translate(${e.clientX*speed}px, ${e.clientY*speed}px)`;
 });
 
 /* SCROLL REVEAL */
-const reveals=document.querySelectorAll('.reveal');
-window.addEventListener('scroll',()=>{
-reveals.forEach(el=>{
-const top=el.getBoundingClientRect().top;
-if(top<window.innerHeight-80){el.classList.add('active');}
+// 获取所有需要动画的元素
+const reveals = document.querySelectorAll('.reveal');
+
+// 页面加载时触发一次
+window.addEventListener('load', () => {
+  reveals.forEach(el => el.classList.add('active'));
 });
+
+// 滚动时触发
+window.addEventListener('scroll', () => {
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 80) {
+      el.classList.add('active');
+    }
+  });
 });
 
 /* STICKY CTA */
